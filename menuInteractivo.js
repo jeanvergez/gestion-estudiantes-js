@@ -39,6 +39,37 @@ function mostrarMenu() {
                 mostrarMenu();
                 break;
 
+                case "3":
+    rl.question("ID del estudiante a actualizar: ", (id) => {
+        rl.question("Nuevo nombre: ", (nuevoNombre) => {
+            rl.question("Nueva edad: ", (nuevaEdad) => {
+                rl.question("Nuevo nivel: ", (nuevoNivel) => {
+                    rl.question("Nuevas calificaciones (formato JSON): ", (calificacionesStr) => {
+                        const nuevasCalificaciones = JSON.parse(calificacionesStr);
+                        GestorEstudiantes.actualizarEstudiante(parseInt(id), nuevoNombre, parseInt(nuevaEdad), nuevoNivel, nuevasCalificaciones);
+                        mostrarMenu();
+                    });
+                });
+            });
+        });
+    });
+    break;
+
+
+    case "4":
+    rl.question("ID del estudiante a eliminar: ", (id) => {
+        GestorEstudiantes.eliminarEstudiante(parseInt(id));
+        mostrarMenu();
+    });
+    break;
+
+
+    case "5":
+    console.log("Listado de estudiantes:", obtenerListadoEstudiantes());
+    mostrarMenu();
+    break;
+
+
             case "6":
                 rl.close();
                 break;
